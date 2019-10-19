@@ -3,21 +3,27 @@ package main
 import (
 	"github.com/mcandre/prql"
 
+	"flag"
 	"fmt"
 	"os"
 )
 
-func usage() {
-	fmt.Printf("Usage: %s <path> [<path> [<path>...]]\n", os.Args[0])
-}
+var flagVersion = flag.Bool("version", false, "Show version information")
+var flagHelp = flag.Bool("help", false, "Show usage information")
 
 func main() {
-	if len(os.Args) < 2 {
-		usage()
-		os.Exit(1)
+	flag.Parse()
+
+	switch {
+	case *flagVersion:
+		fmt.Println(prql.Version)
+		os.Exit(0)
+	case *flagHelp:
+		flag.PrintDefaults()
+		os.Exit(0)
 	}
 
-	paths := os.Args[1:]
+	paths := flag.Args()
 
 	for _, pth := range paths {
 		if err := prql.Prql(pth); err != nil {

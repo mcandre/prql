@@ -7,6 +7,8 @@ $ prql examples
 examples/apples.sql:2: syntax error at byte position 17 near 'SEL'
 ```
 
+See `prql -help` for more options.
+
 # DOWNLOAD
 
 https://github.com/mcandre/prql/releases
