@@ -3,8 +3,8 @@
 # EXAMPLE
 
 ```console
-$ prql examples/
-examples/empty-statement.sql: syntax error at position 1
+$ prql examples
+examples/apples.sql:2: syntax error at byte position 17 near 'SEL'
 ```
 
 # DOWNLOAD
@@ -30,7 +30,7 @@ $ find examples -type f -name '*.sql' -print0 |
     while IFS= read -r -d '' f; do
         prql "$f" || exit 1
     done
-examples/empty-statement.sql: syntax error at position 1
+examples/apples.sql:2: syntax error at byte position 17 near 'SEL'
 ```
 
 # RUNTIME REQUIREMENTS

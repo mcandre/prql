@@ -1,0 +1,2 @@
+SELECT true;
+SEL ECTtrue;

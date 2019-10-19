@@ -3,11 +3,13 @@ package prql
 import (
 	"github.com/xwb1989/sqlparser"
 
+	"bufio"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
 	"path"
+	"strings"
 )
 
 // Version is semver.
@@ -45,6 +47,12 @@ func Prql(pth string) error {
 		return err2
 	}
 
+	defer func() {
+		if err3 := reader.Close(); err3 != nil {
+			fmt.Println(err3)
+		}
+	}()
+
 	tokenizer := sqlparser.NewTokenizer(reader)
 
 	for {
@@ -55,9 +63,45 @@ func Prql(pth string) error {
 		}
 
 		if err3 != nil {
-			return fmt.Errorf("%s: %v", pth, err3)
+			var bytePosition int
+			var line int
+			var foundLineBreaks bool
+
+			reader2, err2 := os.Open(pth)
+
+			if err2 != nil {
+				return err2
+			}
+
+			defer func() {
+				if err3 := reader2.Close(); err3 != nil {
+					fmt.Println(err3)
+				}
+			}()
+
+			scanner := bufio.NewScanner(reader2)
+
+			for scanner.Scan() {
+				foundLineBreaks = true
+
+				bytePosition += len(scanner.Text())
+
+				if bytePosition > tokenizer.Position {
+					break
+				}
+
+				line += 1
+			}
+
+			if !foundLineBreaks {
+				line += 1
+			}
+
+			message := strings.Replace(err3.Error(), "syntax error at position", "syntax error at byte position", 1)
+
+			return fmt.Errorf("%s:%d: %s", pth, line, message)
 		}
 	}
 
-	return reader.Close()
+	return nil
 }
