@@ -11,6 +11,24 @@ examples/empty-statement.sql: syntax error at position 1
 
 https://github.com/mcandre/prql/releases
 
+# MAJOR FEATURES
+
+* Validates SQL syntax, such as common PostgreSQL and MySQL statements.
+* Scans multi-statement .SQL scripts.
+* Recurses along large folder trees.
+* No dependency on live SQL servers or clients.
+* Ops-friendly exit code for CI, script chaining.
+
+# COMPLEX SCRIPT MATCHING
+
+```console
+$ find examples -type f -name '*.sql' -print0 |
+    while IFS= read -r -d '' f; do
+        prql "$f" || exit 1
+    done
+examples/empty-statement.sql: syntax error at position 1
+```
+
 # RUNTIME REQUIREMENTS
 
 * N/A
