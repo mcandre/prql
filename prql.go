@@ -13,7 +13,7 @@ import (
 )
 
 // Version is semver.
-const Version = "0.0.1"
+const Version = "0.0.2"
 
 // Prql recursively scans a directory or file path for SQL scripts.
 // On successful parsing of all files, returns nil.
