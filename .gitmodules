@@ -1,0 +1,3 @@
+[submodule "vendor/github.com/xwb1989/sqlparser"]
+	path = vendor/github.com/xwb1989/sqlparser
+	url = https://github.com/xwb1989/sqlparser.git
