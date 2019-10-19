@@ -11,6 +11,10 @@ examples/empty-statement.sql: syntax error at position 1
 
 https://github.com/mcandre/prql/releases
 
+# API DOCUMENTATION
+
+https://godoc.org/github.com/mcandre/prql
+
 # MAJOR FEATURES
 
 * Validates SQL syntax, such as common PostgreSQL and MySQL statements.
