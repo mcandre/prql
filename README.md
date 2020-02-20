@@ -1,4 +1,4 @@
-# prql ("Prequel"): a command line SQL syntax checker
+# prql ("Prequel"): a command line MySQL syntax checker
 
 # EXAMPLE
 
@@ -19,10 +19,10 @@ https://godoc.org/github.com/mcandre/prql
 
 # MAJOR FEATURES
 
-* Validates SQL syntax, such as common PostgreSQL and MySQL statements.
-* Scans multi-statement .SQL scripts.
+* Validates MySQL statements.
+* Scans multi-statement scripts.
 * Recurses along large folder trees.
-* No dependency on live SQL servers or clients.
+* No dependency on live MySQL servers or clients.
 * Ops-friendly exit code for CI, script chaining.
 
 # COMPLEX SCRIPT MATCHING
